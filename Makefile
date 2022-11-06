@@ -1,35 +1,29 @@
-NAME = philo
+SRCS		= data_philo.c atoi.c main.c init_ad_thrds.c utils.c
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-#CFLAGS += -fsanitize=address
+OBJS		= ${SRCS:c=o}
 
-LIB = -lpthread
+NAME		= philo
 
-SRC = \
-		./src/philosphers.c \
-		./src/thread_routine.c \
-		./src/time.c \
-		./src/utils.c \
-		./src/ft_atoi.c \
-		./src/main.c \
+FLAGS		= -Wall -Wextra -Werror
 
-OBJ = $(SRC:.c=.o)
+RM			= rm -f
 
-.c.o:
-	@$(CC) $(CFLAGS) $< -o $@
+HEAD		= philo.h
 
-$(NAME): $(LIBFT) $(SRC)
-		$(CC) $(SRC) $(CFLAGS) $(LIB) -o $(NAME)
+.PHONY:		all clean fclean re
 
-all: $(NAME)
+all:		${NAME}
+
+${NAME}:	${OBJS} ${HEAD} Makefile 
+			${CC} ${FLAGS} ${OBJS} -o ${NAME}
+
+%.o:		%.c ${HEAD}
+			${CC} ${FLAGS} -c $< -o $@
 
 clean:
-		@rm -rf $(OBJ)
+			${RM} ${OBJS}
 
-fclean: clean
-		@rm -rf $(NAME)
+fclean:		clean
+			${RM} ${NAME} 
 
-re:	fclean all
-
-.PHONY: all clean fclean re
+re:			fclean all
