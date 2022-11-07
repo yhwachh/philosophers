@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/07 11:42:24 by ibalbako          #+#    #+#             */
+/*   Updated: 2022/11/07 11:42:25 by ibalbako         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int check_arg(int ac, char **av)
@@ -14,7 +26,7 @@ int check_arg(int ac, char **av)
             j++;
         if (av[i][j] == '-')
         {
-            write(1, "Error\n", 6);
+            write(2, "Error\n", 6);
             return (1);
         }
         i++;
@@ -44,13 +56,13 @@ int parsing(int ac, char **av, int *data)
 			j++;
 		if (av[i][j] != 0)
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			return (1);
 		}
 		data[i - 1] = ft_atoi(av[i]);
 		if (data[i - 1] == -1)
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			return (1);
 		}
 	}
@@ -62,19 +74,19 @@ int	if_zero(int ac, int *data)
 	if (data[0] == 0)
 	{
 		free(data);
-		write(1, "Error: at least 1 philo is needed\n", 34);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	else if (data[1] == 0)
 	{
 		free(data);
-		write(1, "Error: philosophers died\n", 25);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	if (ac == 6 && data[4] == 0)
 	{
 		free(data);
-		write(1, "Philosophers ate 0 times\n", 25);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	return (0);
@@ -87,7 +99,7 @@ int main(int argc, char **argv)
 
     if (argc != 5 && argc != 6)
     {
-        write(1, "Error\n", 6);
+        write(2, "Error\n", 6);
         return (1);
     }
     check_arg(argc, argv);

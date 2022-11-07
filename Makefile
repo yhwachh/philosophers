@@ -1,10 +1,8 @@
-SRCS		= data_philo.c atoi.c main.c init_ad_thrds.c utils.c
+FLAGS		= -Wall -Wextra -Werror
+NAME		= philo
+SRCS		= data_philo.c atoi.c main.c utils.c thread.c init.c
 
 OBJS		= ${SRCS:c=o}
-
-NAME		= philo
-
-FLAGS		= -Wall -Wextra -Werror
 
 RM			= rm -f
 
