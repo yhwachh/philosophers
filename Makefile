@@ -1,6 +1,6 @@
 FLAGS		= -Wall -Wextra -Werror
 NAME		= philo
-SRCS		= data_philo.c atoi.c main.c utils.c thread.c init.c
+SRCS		= data_philo.c main.c utils.c thread.c init.c
 
 OBJS		= ${SRCS:c=o}
 

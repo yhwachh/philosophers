@@ -33,11 +33,11 @@ int	print(t_philo *ph, char *str)
 long long int	get_time(void)
 {
 	struct timeval	t;
-	long long int	res;
+	long long int	ms;
 
 	gettimeofday(&t, 0);
-	res = t.tv_sec * 1000 + t.tv_usec / 1000;
-	return (res);
+	ms = t.tv_sec * 1000 + t.tv_usec / 1000;
+	return (ms);
 }
 
 void	free_and_destroy(t_data *data)
@@ -61,4 +61,32 @@ void	free_and_destroy(t_data *data)
 	pthread_mutex_destroy(&(data->mut_print));
 	free(data->threads);
 	free(data);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	egal;
+
+	sign = 1;
+	egal = 0;
+	i = 0;
+	while (str[i] && (str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
+	{
+		i++;
+	}
+	if (str[i] == '-')
+	{
+		sign *= -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		egal = egal * 10 + (str[i] - '0');
+		i++;
+	}
+	return (egal * sign);
 }
