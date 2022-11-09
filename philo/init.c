@@ -40,5 +40,6 @@ t_data	*init_data(int argc, int *arg)
 		data->nb_of_t_each_ph_must_e = -1;
 	data->start = get_time();
 	data->philo = init_philo(data);
+	data->dead = 0;
 	return (data);
 }

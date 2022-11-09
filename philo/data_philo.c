@@ -19,17 +19,15 @@ static int	check_death(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		pthread_mutex_lock(&(data->mut_t));
 		if (get_time() - data->philo[i].last_meal_time \
 		> (long long)data->time_to_die)
 		{
-			pthread_mutex_unlock(&(data->mut_t));
+			data->dead = 1;
 			pthread_mutex_lock(&(data->mut_print));
 			printf("%llu %d died\n", \
 			get_time() - data->start, data->philo->nbr);
 			return (1);
 		}
-		pthread_mutex_unlock(&(data->mut_t));
 		i++;
 	}
 	return (0);
@@ -44,10 +42,8 @@ static int	check_full(t_data *data)
 	j = 0;
 	while (i < data->number_of_philo)
 	{
-		pthread_mutex_lock(&(data->mut_e));
 		if (data->philo[i].eat_count >= data->nb_of_t_each_ph_must_e)
 			j++;
-		pthread_mutex_unlock(&(data->mut_e));
 		i++;
 	}
 	if (data->number_of_philo == j)

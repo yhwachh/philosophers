@@ -40,12 +40,11 @@ typedef struct s_data
     int             time_to_eat;
     int             time_to_sleep;
     int             nb_of_t_each_ph_must_e;
+    int             dead;
     long long       start;
     pthread_t		*threads;
     pthread_mutex_t *forks;
     pthread_mutex_t	mut_print;
-	pthread_mutex_t	mut_t;
-	pthread_mutex_t	mut_e;
 }       t_data;
 
 

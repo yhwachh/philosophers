@@ -47,10 +47,6 @@ void	free_and_destroy(t_data *data)
 	i = 0;
 	free(data->philo);
 	data->philo = NULL;
-	pthread_mutex_unlock(&(data->mut_e));
-	pthread_mutex_destroy(&(data->mut_e));
-	pthread_mutex_unlock(&(data->mut_t));
-	pthread_mutex_destroy(&(data->mut_t));
 	while (i < data->number_of_philo)
 	{
 		pthread_mutex_unlock(&(data->forks[i]));
