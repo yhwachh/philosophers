@@ -115,8 +115,8 @@ int main(int argc, char **argv)
     if (data == NULL)
         return(1);
     free(tmp);
-    if (start_treads(data) == 0)
-		check_end(data);
-	free_and_destroy(data);
+    if (treads(data) == 0)
+		if_end(data);
+	free_all_and_destroy(data);
 	return (0);
 }

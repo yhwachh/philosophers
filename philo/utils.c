@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	my_usleep(long long time)
+void	sleeping(long long time)
 {
 	long long	real_time;
 
@@ -24,9 +24,11 @@ void	my_usleep(long long time)
 
 int	print(t_philo *ph, char *str)
 {
-	pthread_mutex_lock(&(ph->info->mut_print));
-	printf("%llu %d %s\n", get_time() - ph->info->start, ph->nbr, str);
-	pthread_mutex_unlock(&(ph->info->mut_print));
+	if (ph->data->dead == 1)
+			return (0);
+	pthread_mutex_lock(&(ph->data->mut_print));
+	printf("%llu %d %s\n", get_time() - ph->data->start, ph->nbr, str);
+	pthread_mutex_unlock(&(ph->data->mut_print));
 	return (0);
 }
 
@@ -40,7 +42,7 @@ long long int	get_time(void)
 	return (ms);
 }
 
-void	free_and_destroy(t_data *data)
+void	free_all_and_destroy(t_data *data)
 {
 	int	i;
 

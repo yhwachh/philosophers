@@ -19,7 +19,7 @@ static t_philo	*init_philo(t_data *data)
 			philos[i].l_fork = 1;
 			philos[i].r_fork = i + 1;
 		}
-		philos[i].info = data;
+		philos[i].data = data;
 		i++;
 	}
 	return (philos);

@@ -2,19 +2,19 @@
 
 static void	eat_philo(t_philo *ph)
 {
-	if (ph->info->dead == 1)
+	if (ph->data->dead == 1)
 		return ;
-	pthread_mutex_lock(&(ph->info->forks[ph->r_fork - 1]));
+	pthread_mutex_lock(&(ph->data->forks[ph->r_fork - 1]));
 	print(ph, "has taken a fork");
-	pthread_mutex_lock(&(ph->info->forks[ph->l_fork - 1]));
+	pthread_mutex_lock(&(ph->data->forks[ph->l_fork - 1]));
 	print(ph, "has taken a fork");
 	ph->last_meal_time = get_time();
 	print(ph, "is eating");
-	if (ph->info->dead == 1)
+	if (ph->data->dead == 1)
 		return ;
-	my_usleep(ph->info->time_to_eat);
-	pthread_mutex_unlock(&(ph->info->forks[ph->l_fork - 1]));
-	pthread_mutex_unlock(&(ph->info->forks[ph->r_fork - 1]));
+	sleeping(ph->data->time_to_eat);
+	pthread_mutex_unlock(&(ph->data->forks[ph->l_fork - 1]));
+	pthread_mutex_unlock(&(ph->data->forks[ph->r_fork - 1]));
 	ph->eat_count++;
 	return ;
 }
@@ -28,18 +28,18 @@ void	*ph_rutin(void *philo)
 		usleep(700);
 	while (1)
 	{
-		if (ph->info->dead == 1)
+		if (ph->data->dead == 1)
 			break ;
 		eat_philo(ph);
 		print(ph, "is sleeping");
-		my_usleep(ph->info->time_to_sleep);
+		sleeping(ph->data->time_to_sleep);
 		print(ph, "is thinking");
 		usleep(300);
 	}
 	return (0);
 }
 
-int	start_treads(t_data *d)
+int	treads(t_data *d)
 {
 	int	i;
 

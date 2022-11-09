@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-static int	check_death(t_data *data)
+static int	if_death(t_data *data)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ static int	check_death(t_data *data)
 	return (0);
 }
 
-static int	check_full(t_data *data)
+static int	if_full(t_data *data)
 {
 	int	i;
 	int	j;
@@ -55,15 +55,17 @@ static int	check_full(t_data *data)
 	return (0);
 }
 
-int	check_end(t_data *data)
+int	if_end(t_data *data)
 {
 	while (1)
 	{
-		if (check_death(data) == 1)
+		if (data->dead == 1)
+			return (0);
+		if (if_death(data) == 1)
 			return (1);
 		if (data->nb_of_t_each_ph_must_e != -1)
 		{
-			if (check_full(data) == 1)
+			if (if_full(data) == 1)
 				return (1);
 		}
 		usleep(300);
