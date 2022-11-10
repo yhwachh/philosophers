@@ -6,7 +6,7 @@
 /*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:42:56 by ibalbako          #+#    #+#             */
-/*   Updated: 2022/11/07 11:42:58 by ibalbako         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:27:47 by ibalbako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	sleeping(long long time)
 int	print(t_philo *ph, char *str)
 {
 	if (ph->data->dead == 1)
-			return (0);
+		return (0);
 	pthread_mutex_lock(&(ph->data->mut_print));
 	printf("%llu %d %s\n", get_time() - ph->data->start, ph->nbr, str);
 	pthread_mutex_unlock(&(ph->data->mut_print));

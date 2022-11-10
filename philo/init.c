@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/10 11:09:22 by ibalbako          #+#    #+#             */
+/*   Updated: 2022/11/10 11:09:25 by ibalbako         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static t_philo	*init_philo(t_data *data)
@@ -16,8 +28,8 @@ static t_philo	*init_philo(t_data *data)
 		philos[i].l_fork = i + 1;
 		if (i == data->number_of_philo - 1)
 		{
-			philos[i].l_fork = 1;
-			philos[i].r_fork = i + 1;
+			philos[i].r_fork = 1;
+			philos[i].l_fork = i + 1;
 		}
 		philos[i].data = data;
 		i++;

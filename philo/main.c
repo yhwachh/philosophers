@@ -6,32 +6,32 @@
 /*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:42:24 by ibalbako          #+#    #+#             */
-/*   Updated: 2022/11/07 11:42:25 by ibalbako         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:20:00 by ibalbako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int check_arg(int ac, char **av)
+int	check_arg(int ac, char **av)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 1;
-    j = 0;
-    while (i < ac)
-    {
-        j = 0;
-        while (av[i][j] && av[i][j] == 32)
-            j++;
-        if (av[i][j] == '-')
-        {
-            write(2, "Error\n", 6);
-            return (1);
-        }
-        i++;
-    }
-    return(0);
+	i = 1;
+	j = 0;
+	while (i < ac)
+	{
+		j = 0;
+		while (av[i][j] && av[i][j] == 32)
+			j++;
+		if (av[i][j] == '-')
+		{
+			write(2, "Error\n", 6);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 static int	ft_isdigit(int c)
@@ -41,9 +41,9 @@ static int	ft_isdigit(int c)
 	return (0);
 }
 
-int parsing(int ac, char **av, int *data)
+int	parsing(int ac, char **av, int *data)
 {
-    int	i;
+	int	i;
 	int	j;
 
 	i = 0;
@@ -67,8 +67,8 @@ int parsing(int ac, char **av, int *data)
 		}
 	}
 	return (0);
-
 }
+
 int	if_zero(int ac, int *data)
 {
 	if (data[0] == 0)
@@ -92,30 +92,30 @@ int	if_zero(int ac, int *data)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_data *data;
-    int     *tmp;
+	t_data	*data;
+	int		*tmp;
 
-    if (argc != 5 && argc != 6)
-    {
-        write(2, "Error\n", 6);
-        return (1);
-    }
-    check_arg(argc, argv);
-    tmp = (int *)malloc(sizeof(int) * (argc - 1));
-    if (parsing(argc,argv,tmp) == 1)
-    {
-        free(tmp);
-        return (1);
-    }
-    if (if_zero(argc, tmp) == 1)
+	if (argc != 5 && argc != 6)
+	{
+		write(2, "Error\n", 6);
 		return (1);
-    data = init_data(argc, tmp);
-    if (data == NULL)
-        return(1);
-    free(tmp);
-    if (treads(data) == 0)
+	}
+	check_arg(argc, argv);
+	tmp = (int *)malloc(sizeof(int) * (argc - 1));
+	if (parsing(argc, argv, tmp) == 1)
+	{
+		free(tmp);
+		return (1);
+	}
+	if (if_zero(argc, tmp) == 1)
+		return (1);
+	data = init_data(argc, tmp);
+	if (data == NULL)
+		return (1);
+	free(tmp);
+	if (treads(data) == 0)
 		if_end(data);
 	free_all_and_destroy(data);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 11:41:56 by ibalbako          #+#    #+#             */
-/*   Updated: 2022/11/07 11:41:58 by ibalbako         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:21:39 by ibalbako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	if_full(t_data *data)
 	if (data->number_of_philo == j)
 	{
 		pthread_mutex_lock(&(data->mut_print));
-		printf("all philoophers have eat at least %d times", data->nb_of_t_each_ph_must_e);
+		printf("%d times", data->nb_of_t_each_ph_must_e);
 		return (1);
 	}
 	return (0);
